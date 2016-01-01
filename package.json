@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "postinstall": "ECHO you must copy node_modules/electron-prebuilt/dist to dist to use npm start",
+    "postinstall": "python postinstall.py && npm install app",
     "prestart": "asar pack app dist/resources/app.asar",
-    "start": ".\\dist\\electron.exe"
+    "prepublish": "asar pack app dist/resources/app.asar",
+    "start": "python start.py"
   },
   "devDependencies": {
     "asar": "^0.9.0",
