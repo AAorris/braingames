@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "postinstall": "python postinstall.py && npm install app",
-    "prestart": "asar pack app dist/resources/app.asar",
-    "prepublish": "asar pack app dist/resources/app.asar",
-    "start": "python start.py"
+    "postinstall": "cd app && npm install",
+    "compile": "coffee -o app --literate -- src/*.litcoffee && rm -fv src/*.js",
+    "build": "npm run-script compile && asar pack app braingames.asar",
+    "prepublish": "npm run-script compile && asar pack app dist/braingames.asar",
+    "start": "npm run-script compile && electron app"
   },
   "devDependencies": {
-    "asar": "^0.9.0",
-    "electron-prebuilt": "^0.36.2"
+    "asar": "^0.9.0"
   }
 }
